@@ -10,3 +10,6 @@
 2. Java Springboot
 3. Hibernate/JPA
 4. SQL
+
+#### Note
+I've also included a learning PDF that contains the things I learned while executing this project.
