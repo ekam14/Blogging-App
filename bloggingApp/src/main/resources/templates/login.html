@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Login Page</title>
+    <style>
+        body {
+            color: #1a202c;
+            background-color: #a0a0a0;
+        }
+
+        form {
+            margin: auto;
+            padding: 2rem;
+            width: 60%;
+            background-color: #fff;
+            border-radius: 25px;
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin: 1rem;
+        }
+
+        .error {
+            border-radius: 10px;
+            background-color: red;
+            padding: 10px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card-body">
+                <form action="#" th:action="@{/processFormLogin}" th:object="${user}" method="post">
+                    <div class="form-group">
+                        <div class="col-sm-15">
+                            <div>
+                                <div th:if="${userNotExists}">
+                                    <div class="error">Email or password is incorrect.</div>
+                                </div>
+                                <div th:if="${userNull}">
+                                    <div class="error">Email or password cannot be empty.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email address</label>
+                        <input type="email" class="form-control" name="email" th:field="*{email}" placeholder="Email"
+                               autocomplete="off">
+                        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" name="password" class="form-control" th:field="*{password}" placeholder="Password">
+                        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></span>
+                    </div>
+                    <div class="form-group">
+                        <a class="btn btn-warning" th:href="@{/signUp}">New User?</a>
+                        <input class="btn btn-primary" type="submit" value="Login" />
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
